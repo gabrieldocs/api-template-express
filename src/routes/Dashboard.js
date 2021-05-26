@@ -1,7 +1,7 @@
 "use strict"
 
 const router = require("express").Router()
-const DashboardController = require("../controllers/Dashboard")
+const DashboardController = require("../../app/controllers/Dashboard")
 
 router.get("/", DashboardController.index)
 

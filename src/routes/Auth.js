@@ -1,6 +1,6 @@
 "use strict"
 const router = require("express").Router() 
-const AuthController = require("../controllers/Auth")
+const AuthController = require("../../app/controllers/Auth")
 
 router.get("/", AuthController.home)
 router.get("/login", AuthController.login)
