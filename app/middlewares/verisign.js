@@ -20,7 +20,7 @@ const verisign = (payload) =>{
 
 
 exports.sign = (payload) => {
-    return jwt.sign(payload, process.env.SECRET)
+    return jwt.sign(payload, process.env.SECRET, {expiresIn:600})
 }
 
 exports.verify = (payload) =>{

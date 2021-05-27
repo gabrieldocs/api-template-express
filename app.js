@@ -14,11 +14,13 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 
+
 app.use("/", Public)
 app.use("/auth", Auth)
 app.use("/dashboard", Dashboard)
 
 
+// Testando a verificação do JWT para rota protegida 
 const {verifyJWT} = require("./app/middlewares/authenticate")
 
 app.get("/media", verifyJWT ,(req, res)=>{     

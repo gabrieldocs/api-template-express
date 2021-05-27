@@ -15,7 +15,7 @@ exports.home = (req, res) => {
 
 exports.index = (req, res) => {
     res.status(200).json({
-        message: `Login`,
+        message: "Welcome to the Login page",
         date: new Date()
     })
 }
@@ -23,6 +23,8 @@ exports.index = (req, res) => {
 exports.login = async(req, res) => {
     var {email,password} = req.body 
     var token = null     
+    if(!email    || email==undefined) return res.status(400).json({message: "Missing one or more fields"})
+    if(!password || password==undefined) return res.status(400).json({message: "Missing one or more fields"})
     var user = await model.Users.findOne({
         where:{
             email:email            
@@ -33,8 +35,8 @@ exports.login = async(req, res) => {
         bcrypt.compare(password, data.password, function(err, result){
             if (result===true) {
                 console.log(result)                
-                data.password = undefined             
-                token = sign(JSON.stringify(data))      
+                data.password = undefined   
+                token = sign(data)
                 return res.status(200).json({
                     token: token, 
                     user:data,
