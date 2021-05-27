@@ -18,4 +18,14 @@ app.use("/", Public)
 app.use("/auth", Auth)
 app.use("/dashboard", Dashboard)
 
+
+const {verifyJWT} = require("./app/middlewares/authenticate")
+
+app.get("/media", verifyJWT ,(req, res)=>{     
+    res.json({
+        message: "teste"
+    })
+})
+
+
 module.exports = app 
