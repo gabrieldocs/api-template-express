@@ -53,19 +53,24 @@ exports.login = async(req, res) => {
 
 exports.register = async(req, res) =>{
     const rounds = 10 
-    let {firstName, lastName,email, password} = req.body 
+    let {firstName, lastName,email, password, pin, username} = req.body 
+    if(!username|| username===undefined) 
+        username = email 
+    if(!pin || pin===undefined)
+        pin = null 
     bcrypt.genSalt(rounds, (err,salt)=>{
         bcrypt.hash(password, salt, async(err, hash)=>{
             password = hash         
             try {        
-                let user = await model.Users.create({firstName, lastName,email,password})
+                let user = await model.Users.create({firstName, lastName,email,password, username, pin})
                 user.password = undefined 
                 res.status(200).json({
                     message: `Succeed in resource creation`,
                     user: user 
                 })
             }catch(e){
-                res.status(400).json({
+                console.log(e)
+                res.status(400).json({                    
                     message: `Failed to create resource`                    
                 })
             }    
