@@ -1,5 +1,10 @@
 "use strict"
 const {sign, verify}= require("../middlewares/verisign")
+const model = require("../models/index") 
+
+const Sequelize = require("sequelize")
+const Op = Sequelize.Op 
+
 
 exports.home = (req, res) => {
     res.status(200).json({
@@ -27,5 +32,15 @@ exports.logout = (req, res) => {
     res.status(200).json({
         message: `Logout`,
         date: new Date()
+    })
+}
+
+// Querying through the users 
+
+exports.findAll = async(req, res) => {
+    const myUsers = await model.Users.findAll()
+    // console.log(JSON.stringify(users, null, 4))
+    res.status(200).json({
+        users:myUsers 
     })
 }
