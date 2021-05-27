@@ -1,3 +1,3 @@
-const app = require('./app.js')
+const app = require("./app.js");
 
-app.listen(process.env.PORT)
+app.listen(process.env.PORT);

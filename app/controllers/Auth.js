@@ -1,10 +1,10 @@
 "use strict";
 const bcrypt = require("bcrypt");
-const {sign, verify}= require("../middlewares/verisign");
+const {sign}= require("../middlewares/verisign");
 const model = require("../models/index");
 
-const Sequelize = require("sequelize");
-const Op = Sequelize.Op;
+// const Sequelize = require("sequelize");
+// const Op = Sequelize.Op;
 
 
 exports.home = (req, res) => {
@@ -25,7 +25,7 @@ exports.login = async(req, res) => {
 	var token = null;
 	if(!email    || email==undefined) return res.status(400).json({message: "Missing one or more fields"});
 	if(!password || password==undefined) return res.status(400).json({message: "Missing one or more fields"});
-	var user = await model.Users.findOne({
+	await model.Users.findOne({
 		where:{
 			email:email
 		}
@@ -34,7 +34,6 @@ exports.login = async(req, res) => {
 	}).then(async data =>{
 		bcrypt.compare(password, data.password, function(err, result){
 			if (result===true) {
-				console.log(result);
 				data.password = undefined;
 				token = sign(data);
 				return res.status(200).json({

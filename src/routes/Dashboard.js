@@ -1,8 +1,8 @@
-"use strict"
+"use strict";
 
-const router = require("express").Router()
-const DashboardController = require("../../app/controllers/Dashboard")
+const router = require("express").Router();
+const DashboardController = require("../../app/controllers/Dashboard");
 
-router.get("/", DashboardController.index)
+router.get("/", DashboardController.index);
 
-module.exports = router 
+module.exports = router; 
