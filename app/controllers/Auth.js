@@ -13,21 +13,21 @@ exports.home = (req, res) => {
     })
 }
 
-exports.login = (req, res) => {
+exports.index = (req, res) => {
     res.status(200).json({
         message: `Login`,
         date: new Date()
     })
 }
 
-exports.loginv1 = async(req, res) => {
+exports.login = async(req, res) => {
     var {email,password} = req.body 
     var token = null     
     var user = await model.Users.findOne({
         where:{
             email:email            
         }
-    }).then(response=>{
+    }).then(response => {
         return response.dataValues 
     }).then(async data =>{                       
         bcrypt.compare(password, data.password, function(err, result){
@@ -48,7 +48,6 @@ exports.loginv1 = async(req, res) => {
             }
         })
     })
-
 }
 
 
@@ -60,14 +59,14 @@ exports.register = async(req, res) =>{
             password = hash         
             try {        
                 let user = await model.Users.create({firstName, lastName,email,password})
+                user.password = undefined 
                 res.status(200).json({
                     message: `Succeed in resource creation`,
                     user: user 
                 })
             }catch(e){
                 res.status(400).json({
-                    message: `Failed to create resource`,
-                    error: e
+                    message: `Failed to create resource`                    
                 })
             }    
         })
