@@ -8,6 +8,11 @@ router.post("/login", AuthController.loginv1)
 router.get("/logout", AuthController.logout)
 router.post("logout")
 
+// Create user 
+
+router.post("/register", AuthController.register)
+
+// Return users 
 router.get("/users", AuthController.findAll)
 
 module.exports = router 
