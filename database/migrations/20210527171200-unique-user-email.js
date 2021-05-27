@@ -10,6 +10,10 @@ module.exports = {
 	},
 
 	down: async (queryInterface, Sequelize) => {
-		queryInterface.changeColumn("users", "email");
+		queryInterface.changeColumn("Users", "email",{
+			type: Sequelize.STRING,
+			allowNull: null,
+			unique: true,
+		});
 	},
 };

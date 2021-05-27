@@ -14,5 +14,7 @@ router.post("/register", AuthController.register);
 
 // Return users
 router.get("/users", AuthController.findAll);
+router.get("/delete/:id", AuthController.delete);
+
 
 module.exports = router;

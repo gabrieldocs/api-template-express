@@ -107,3 +107,18 @@ exports.findAll = async (req, res) => {
 		users: myUsers,
 	});
 };
+
+
+exports.delete = async(req, res) => {
+	var id = req.params.id;
+	await model.Users.destroy({
+		where:{
+			id
+		}
+	});
+	return res.status(200).json({
+		message: "Done bro",
+		id: id
+
+	});
+};

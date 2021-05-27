@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
 	class Users extends Model {
 		static associate(models) {
@@ -8,6 +9,11 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	Users.init(
 		{
+			id:{
+				type: DataTypes.UUID,
+				primaryKey: true,
+				defaultValue: DataTypes.UUIDV4
+			},
 			firstName: DataTypes.STRING,
 			lastName: DataTypes.STRING,
 			email: DataTypes.STRING,
@@ -17,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		{
 			sequelize,
+			paranoid: true,
 			modelName: "Users",
 		}
 	);
