@@ -1,5 +1,5 @@
 "use strict";
-const router = require("express").Router(); 
+const router = require("express").Router();
 const AuthController = require("../../app/controllers/Auth");
 
 router.get("/", AuthController.home);
@@ -8,11 +8,11 @@ router.post("/login", AuthController.login);
 router.get("/logout", AuthController.logout);
 router.post("logout");
 
-// Create user 
+// Create user
 
 router.post("/register", AuthController.register);
 
-// Return users 
+// Return users
 router.get("/users", AuthController.findAll);
 
-module.exports = router; 
+module.exports = router;

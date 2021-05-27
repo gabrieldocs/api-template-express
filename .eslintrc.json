@@ -5,10 +5,7 @@
         "es2021": true,
         "node": true
     },
-    "extends": [
-        "prettier",
-        "eslint:recommended"
-    ],
+    "extends": "eslint:recommended",
     "plugins":[
         "prettier"
     ],
@@ -16,7 +13,6 @@
         "ecmaVersion": 12
     },
     "rules": {
-        "prettier/prettier":"error",
         "indent": [
             "error",
             "tab"
