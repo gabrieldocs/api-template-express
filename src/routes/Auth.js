@@ -1,20 +1,15 @@
 "use strict";
 const router = require("express").Router();
-const AuthController = require("../../app/controllers/Auth");
+const Authentication = require("../../app/controllers/Auth");
 
-router.get("/", AuthController.home);
-router.get("/login", AuthController.index);
+const AuthController = Authentication();
+
+router.get("/",       AuthController.home);
+router.get("/users",  AuthController.index);
 router.post("/login", AuthController.login);
 router.get("/logout", AuthController.logout);
-router.post("logout");
-
-// Create user
-
-router.post("/register", AuthController.register);
-
-// Return users
-router.get("/users", AuthController.findAll);
-router.get("/delete/:id", AuthController.delete);
+router.post("/register", AuthController.store);
+router.get("/delete/:id", AuthController.destroy);
 
 
 module.exports = router;

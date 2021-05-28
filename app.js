@@ -1,30 +1,47 @@
 "use strict";
 require("dotenv").config();
 const express = require("express");
-const app = express();
-
 const Public = require("./src/routes/Public");
 const Auth = require("./src/routes/Auth");
 const Dashboard = require("./src/routes/Dashboard");
 
-app.use(
-	express.urlencoded({
-		extended: true,
-	})
-);
-app.use(express.json());
 
-app.use("/", Public);
-app.use("/auth", Auth);
-app.use("/dashboard", Dashboard);
+function Server () {
+	let app = express();
+	function start(){
+		app.use(
+			express.urlencoded({
+				extended: true,
+			})
+		);
+		app.use(express.json());
 
-// Testando a verificação do JWT para rota protegida
-const { verifyJWT } = require("./app/middlewares/authenticate");
+		console.info("[server] Starting...");
 
-app.get("/media", verifyJWT, (req, res) => {
-	res.json({
-		message: "teste",
-	});
-});
+		app.use("/", Public);
+		app.use("/auth", Auth);
+		app.use("/dashboard", Dashboard);
 
-module.exports = app;
+		// Testando a verificação do JWT para rota protegida
+		const { verifyJWT } = require("./app/middlewares/authenticate");
+
+		app.get("/media", verifyJWT, (req, res) => {
+			res.json({
+				message: "teste",
+			});
+		});
+		app.listen(process.env.PORT);
+
+	}
+	function stop(){
+		console.log("[server] Stopping...");
+		app.close();
+		console.log("[server] Stopping done!");
+	}
+	return {
+		start,
+		stop
+	};
+}
+
+module.exports = Server;

@@ -1,3 +1,10 @@
-const app = require("./app.js");
+const Server = require("./app.js");
 
-app.listen(process.env.PORT);
+const server = Server();
+
+try {
+	server.start();
+} catch (error) {
+	server.stop();
+	console.log("[server] Uncaught error!" + error);
+}
