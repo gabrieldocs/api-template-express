@@ -8,7 +8,7 @@ const Dashboard = require("./src/routes/Dashboard");
 
 function Server () {
 	let app = express();
-	function start(){
+	function up(){
 		app.use(
 			express.urlencoded({
 				extended: true,
@@ -33,14 +33,14 @@ function Server () {
 		app.listen(process.env.PORT);
 
 	}
-	function stop(){
+	function down(){
 		console.log("[server] Stopping...");
 		app.close();
 		console.log("[server] Stopping done!");
 	}
 	return {
-		start,
-		stop
+		up,
+		down
 	};
 }
 

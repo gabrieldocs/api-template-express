@@ -114,15 +114,16 @@ function Authentication () {
 			id: id
 		});
 	}
-	return {
+	return Object.assign(Object.create({}),{
 		home,
 		index,
 		store,
 		login,
 		logout,
 		destroy
-	};
+	});
 }
 
+// console.log(typeof(Authentication()));
 
 module.exports = Authentication;

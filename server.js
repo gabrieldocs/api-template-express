@@ -3,8 +3,8 @@ const Server = require("./app.js");
 const server = Server();
 
 try {
-	server.start();
+	server.up();
 } catch (error) {
-	server.stop();
+	server.down();
 	console.log("[server] Uncaught error!" + error);
 }

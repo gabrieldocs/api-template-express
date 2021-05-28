@@ -1,5 +1,7 @@
 const router = require("express").Router();
-const PublicController = require("../../app/controllers/Public");
+const Public = require("../../app/controllers/Public");
+
+const PublicController = Public();
 
 router.get("/", PublicController.index);
 
