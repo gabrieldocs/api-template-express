@@ -18,18 +18,19 @@ function Server () {
 
 		console.info("[server] Starting...");
 
+
 		app.use("/", Public);
 		app.use("/auth", Auth);
 		app.use("/dashboard", Dashboard);
 
 		// Testando a verificação do JWT para rota protegida
-		const { verifyJWT } = require("./app/middlewares/authenticate");
+		// const { verifyJWT } = require("./app/middlewares/authenticate");
 
-		app.get("/media", verifyJWT, (req, res) => {
-			res.json({
-				message: "teste",
-			});
-		});
+		// app.get("/media", verifyJWT, (req, res) => {
+		// 	res.json({
+		// 		message: "teste",
+		// 	});
+		// });
 		app.listen(process.env.PORT);
 
 	}

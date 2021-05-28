@@ -9,6 +9,4 @@ function Public() {
 	return Object.assign(Object.create({}), {index});
 }
 
-// console.log(typeof(Public()));
-
 module.exports = Public;

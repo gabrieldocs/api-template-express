@@ -1,5 +1,4 @@
 "use strict";
-
 const router = require("express").Router();
 const Dashboard = require("../../app/controllers/Dashboard");
 const DashboardController = Dashboard();
