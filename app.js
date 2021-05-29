@@ -7,6 +7,8 @@ const Dashboard = require("./src/routes/Dashboard");
 const Collection = require("./src/routes/Collection");
 
 function Server () {
+	// TODO:
+	// Escrever métodos como no VueJS: methods:{up: function() {}, down: function(){}}
 	let app = express();
 	function up(){
 		app.use(
