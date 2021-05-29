@@ -73,7 +73,13 @@ function Authentication () {
 			},
 		})
 			.then((response) => {
-				return response.dataValues;
+				if(response) {
+					return response.dataValues;
+				}else{
+					return res.status(404).json({
+						message: "Sorry bro"
+					});
+				}
 			})
 			.then(async (data) => {
 				bcrypt.compare(password, data.password, function (err, result) {
@@ -91,6 +97,11 @@ function Authentication () {
 							date: new Date(),
 						});
 					}
+				});
+			}).catch((e)=>{
+				return res.status(500).json({
+					message: "Sorry bro",
+					error: e
 				});
 			});
 	}
