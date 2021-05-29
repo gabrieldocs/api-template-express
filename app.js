@@ -4,7 +4,7 @@ const express = require("express");
 const Public = require("./src/routes/Public");
 const Auth = require("./src/routes/Auth");
 const Dashboard = require("./src/routes/Dashboard");
-
+const Collection = require("./src/routes/Collection");
 
 function Server () {
 	let app = express();
@@ -22,7 +22,7 @@ function Server () {
 		app.use("/", Public);
 		app.use("/auth", Auth);
 		app.use("/dashboard", Dashboard);
-
+		app.use("/collections", Collection);
 		// Testando a verificação do JWT para rota protegida
 		// const { verifyJWT } = require("./app/middlewares/authenticate");
 

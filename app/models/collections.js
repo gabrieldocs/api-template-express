@@ -9,13 +9,18 @@ module.exports = (sequelize, DataTypes) => {
 		}
 	}
 	Collections.init({
+		id:{
+			type: DataTypes.UUID,
+			primaryKey: true,
+			defaultValue: DataTypes.UUIDV4
+		},
 		name: DataTypes.STRING,
 		privacy: DataTypes.BOOLEAN,
-		icon: DataTypes.STRING
+		icon: DataTypes.STRING,
 	}, {
 		sequelize,
 		paranoid:true,
-		modelName: "Groups",
+		modelName: "Collections",
 	});
 	return Collections;
 };

@@ -17,7 +17,9 @@ module.exports = {
 				type: Sequelize.ENUM("public", "private")
 			},
 			icon: {
-				type: Sequelize.STRING
+				type: Sequelize.STRING,
+				allowNull: true,
+				defaultValue: null
 			},
 			createdAt: {
 				allowNull: false,
