@@ -2,13 +2,14 @@
 require("dotenv").config();
 const express = require("express");
 const Public = require("./src/routes/Public");
-const Auth = require("./src/routes/Auth");
 const Dashboard = require("./src/routes/Dashboard");
+const Auth = require("./src/routes/Auth");
 const Collection = require("./src/routes/Collection");
+// const Resource = require("./src/routes/Resource");
 
 function Server () {
 	let app = express();
-	const methods = {
+	let methods = {
 		up:function(){
 			app.use(
 				express.urlencoded({
@@ -20,6 +21,7 @@ function Server () {
 			app.use("/auth", Auth);
 			app.use("/dashboard", Dashboard);
 			app.use("/collections", Collection);
+			// app.use("/resources", Resource);
 
 			app.listen(process.env.PORT);
 

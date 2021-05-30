@@ -4,6 +4,7 @@ const Authentication = require("../../app/controllers/Auth");
 
 const AuthController = Authentication();
 
+
 router.get("/",       AuthController.home);
 router.get("/users",  AuthController.index);
 router.post("/login", AuthController.login);
